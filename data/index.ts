@@ -1,1 +1,3 @@
-export { data, DataProp } from './data';
+export { data } from './data';
+export type { DataProp } from './data';
+

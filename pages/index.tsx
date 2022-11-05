@@ -7,22 +7,22 @@ export default function Home() {
 	return (
 		<div className={styles.container}>
 			<Head>
-				<title>Simple Next/Previous Buttons</title>
+				<title>Dynamic Next/Previous Buttons</title>
 				<meta
 					name="description"
-					content="Simple Next and Previous buttons in NextJs."
+					content="Dynamic Next/Previous buttons in NextJs."
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<h1 className={styles.h1}>Simple Next/Previous Buttons</h1>
+			<h1 className={styles.h1}>Dynamic Next/Previous Buttons</h1>
 			<main className={styles.main}>
 				<ProjectData />
 			</main>
 
 			<footer className={styles.footer}>
 				<p>
-					wazimu{' '}
+					&copy;{new Date().getFullYear()}
 					<a
 						href="https://github.com/hesbon-osoro"
 						target="_blank"
@@ -37,7 +37,7 @@ export default function Home() {
 							/>
 						</span>
 					</a>{' '}
-					&copy;{new Date().getFullYear()}{' '}
+					wazimu
 				</p>
 			</footer>
 		</div>

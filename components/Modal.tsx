@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 import styles from '../styles/modal.module.css';
 
@@ -9,6 +10,7 @@ type ModalProps = {
 	onNext: () => void;
 	nextTitle: string;
 	previousTitle: string;
+	src: string;
 };
 
 const Modal: FC<ModalProps> = ({
@@ -19,11 +21,13 @@ const Modal: FC<ModalProps> = ({
 	onNext,
 	nextTitle,
 	previousTitle,
+	src,
 }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.modal}>
 				<h1>{title}</h1>
+				<Image src={src} alt={title} width={100} height={100} />
 				<h3>{description}</h3>
 				<div className={styles.buttons}>
 					<button onClick={onPrev}>

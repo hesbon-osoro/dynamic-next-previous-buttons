@@ -3,14 +3,15 @@ import React, { FC } from 'react';
 
 type ProjectProps = {
 	onModalOpen: (idx: number) => void;
-	url: string;
+	src: string;
 	index: number;
+	title: string;
 };
 
-const Project: FC<ProjectProps> = ({ onModalOpen, index, url }) => {
+const Project: FC<ProjectProps> = ({ onModalOpen, index, src, title }) => {
 	return (
 		<div onClick={() => onModalOpen(index)}>
-			<Image src={url} alt="image" width={150} height={150} />
+			<Image src={src} alt={title} width={100} height={100} title={title} />
 		</div>
 	);
 };

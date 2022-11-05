@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { FC, useEffect, useState } from 'react';
-import { data, DataProp } from '../data';
+import { ProgrammingLanguagesProps, programmingLanguages } from '../data';
 import { Modal, Project } from '.';
 import styles from '../styles/projectData.module.css';
 
@@ -14,19 +14,21 @@ import styles from '../styles/projectData.module.css';
 const ProjectData: FC = () => {
 	const [state, setState] = useState({
 		// projects: [],
+		src: '',
 		activeProject: '',
 		modalTitle: '',
 		modalDescription: '',
 	});
-	const [projects, setProjects] = useState<DataProp[]>([]);
+	const [projects, setProjects] = useState<ProgrammingLanguagesProps[]>([]);
 
 	useEffect(() => {
-		setProjects(data);
+		setProjects(programmingLanguages);
 	}, []);
 
 	const handleModelOpen = idx => {
 		setState({
 			activeProject: idx,
+			src: projects[idx].src,
 			modalTitle: projects[idx].title,
 			modalDescription: projects[idx].description,
 		});
@@ -43,6 +45,7 @@ const ProjectData: FC = () => {
 
 		setState({
 			activeProject: idx,
+			src: projects[idx].src,
 			modalTitle: projects[idx].title,
 			modalDescription: projects[idx].description,
 		});
@@ -61,6 +64,8 @@ const ProjectData: FC = () => {
 
 		setState({
 			activeProject: idx,
+			src: projects[idx].src,
+
 			modalTitle: projects[idx].title,
 			modalDescription: projects[idx].description,
 		});
@@ -81,12 +86,13 @@ const ProjectData: FC = () => {
 		return arr[i].title;
 	}
 
-	const projectComponents = data.map((arr, idx) => (
+	const projectComponents = programmingLanguages.map((arr, idx) => (
 		<Project
 			key={`project-${arr.id}`}
 			index={idx}
 			title={arr.title}
 			url={arr.url}
+			src={arr.src}
 			onModalOpen={handleModelOpen}
 		/>
 	));
@@ -94,7 +100,7 @@ const ProjectData: FC = () => {
 	if (state.activeProject === '') {
 		return (
 			<div className={styles.projectComponents}>
-				<h3>Click on a project below to view details</h3>
+				<h3>Click on a language logo below to view details</h3>
 				<div className={styles.projects}>{projectComponents}</div>
 			</div>
 		);
@@ -104,11 +110,12 @@ const ProjectData: FC = () => {
 				<Modal
 					title={state.modalTitle}
 					description={state.modalDescription}
-					previousTitle={prevTitle(state.activeProject, data)}
-					nextTitle={nextTitle(state.activeProject, data)}
+					previousTitle={prevTitle(state.activeProject, programmingLanguages)}
+					nextTitle={nextTitle(state.activeProject, programmingLanguages)}
 					onModalClose={handleModalClose}
 					onNext={handleNextProject}
 					onPrev={handlePrevProject}
+					src={state.src}
 				/>
 			</div>
 		);
